@@ -23,7 +23,7 @@ while not calc_finished:
     # and print the operators
     if calc_init:
         accumulator = float(input("What is the first number? "))
-        print("+\n-\n*\n/")
+        print("+\n-\n*\n/") # we should make this dynamic based on the operations in the calculations dictionary
 
     # we want to wipe clean the arithmetic list to start fresh
     arithmetic.clear()
