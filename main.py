@@ -7,12 +7,12 @@ number = 0
 calc_init = True
 calc_finished = False
 
-# calculations are in string format as we will use eval() function to evaluation string into an operation
+# references to functions are stored as variables in a dictionary, which can be called later.
 calculations = {
-    "+": f"ops.add(accumulator, number)",
-    "-": f"ops.subtract(accumulator, number)",
-    "*": f"ops.multiply(accumulator, number)",
-    "//": f"ops.divide(accumulator, number)",
+    "+": ops.add,
+    "-": ops.subtract,
+    "*": ops.multiply,
+    "//": ops.divide,
 }
 
 arithmetic = []
@@ -46,11 +46,12 @@ while not calc_finished:
     # stringify the items in the list for print out
     arith_string = func.calc_string(arithmetic)
 
-    # evaluate the new value of the accumulator using the eval function to interpret the respective string
-    # in the calculations list
-    accumulator = eval(calculations[operator])
 
-    #print out the final version of the equation
+    # print(calculations[operator]) # test to show that it refers to a function that is at memory location x
+    # This line references the function that is in the dictionary and we pass any parameters required via succeeding parentheses
+    accumulator = calculations[operator](accumulator, number)
+
+    # print out the final version of the equation
     print(arith_string + " = " + str(accumulator))
 
     # ask user if they want to continue with the current result
